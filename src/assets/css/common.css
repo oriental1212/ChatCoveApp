@@ -1,0 +1,18 @@
+:root {
+    --primary-color: #ffffff;
+    --CardBackgroundColor: #292B2F;
+    --ButtonBackgroundColor: #35373D;
+    --BackgroundColor: #17181A;
+    --image64Size: 64px;
+    --image52Size: 52px;
+    --image48Size: 48px;
+    --image32Size: 32px;
+    --image16Size: 16px;
+    --image8Size: 8px;
+    --ThemeColor: #666E21;
+    --color-line: #383837;
+}
+
+body {
+    font-size: 14px;
+}
