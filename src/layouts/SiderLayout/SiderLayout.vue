@@ -4,7 +4,7 @@ import ListContent from './ListContent.vue'
 
 const router = useRouter()
 const clickSettingButton = () => {
-    router.push({ path: '/app/user-setting' })
+    router.push({ path: '/app/userSetting' })
 }
 </script>
 

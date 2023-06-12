@@ -13,9 +13,31 @@ export const router = createRouter({
             component: () => import('@/layouts/LayoutOverview.vue'),
             children: [
                 {
-                    name: 'user-setting',
-                    path: '/app/user-setting',
+                    name: 'userSetting',
+                    path: '/app/userSetting',
                     component: () => import('@/views/normal/setting/UserSetting.vue')
+                }
+            ]
+        },
+        {
+            name: 'authCheck',
+            path: '/login',
+            component: () => import('@/views/auth/AuthCheck.vue'),
+            children: [
+                {
+                    name: 'loginAuth',
+                    path: '/login/loginAuth',
+                    component: () => import('@/views/auth/components/LoginAuth.vue')
+                },
+                {
+                    name: 'forgetAuth',
+                    path: '/login/forgetAuth',
+                    component: () => import('@/views/auth/components/ForgetAuth.vue')
+                },
+                {
+                    name: 'loginPassword',
+                    path: '/login/loginPassword',
+                    component: () => import('@/views/auth/components/LoginPassword.vue')
                 }
             ]
         }
