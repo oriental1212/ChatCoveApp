@@ -1,17 +1,50 @@
 <script setup>
+import { reactive } from 'vue'
 
+const props = defineProps({
+    changeFlag: {
+        type: Boolean,
+        dafault: () => ({})
+    }
+})
+
+const friendsList = reactive([
+    {
+        title: '全部好友',
+        fontImg: '/src/assets/img/Layout/allFriend.png'
+    },
+    {
+        title: '在线好友',
+        fontImg: '/src/assets/img/Layout/onlineFriend.png'
+    },
+    {
+        title: '好友请求',
+        fontImg: '/src/assets/img/Layout/addFriend.png'
+    },
+    {
+        title: '黑名单',
+        fontImg: '/src/assets/img/Layout/blackFriend.png'
+    }
+])
 </script>
 
 <template>
     <div class="list-content">
+    <!-- 好友操作展示  -->
+        <div class="parent-button" v-for="friend in friendsList" :key="friend" v-show="props.changeFlag">
+            <div class="insert-button">
+                <img :src=friend.fontImg alt="">
+            </div>
+        </div>
+    <!-- 服务器列表 -->
         <!-- 添加服务器 -->
-        <div class="parent-button">
+        <div class="parent-button" v-show="!props.changeFlag">
             <div class="insert-button">
                 <img src="@/assets/img/Layout/insert.png" alt="">
             </div>
         </div>
         <!-- 动态列表展示 -->
-        <div class="dynamic-list">
+        <div class="dynamic-list" v-show="!props.changeFlag">
             <div class="card-button">
                 <img src="@/assets/img/Layout/my_avatar.jpg" alt="">
             </div>

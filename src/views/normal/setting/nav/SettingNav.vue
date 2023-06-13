@@ -85,6 +85,7 @@ const clickItemActive = (item) => {
                 margin-bottom: 2px;
                 .nav-text{
                     user-select: none;
+                    color: #e6eaf0;
                     font-size: 16px;
                 }
             }

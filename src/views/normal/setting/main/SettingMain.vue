@@ -26,8 +26,6 @@
         overflow-x: hidden;
         padding: 40px var(--image16Size) 60px 56px;
         overflow-y: scroll;
-        .title{}
-        .description{}
     }
     .setting-page-main-content::-webkit-scrollbar {
         display: none;

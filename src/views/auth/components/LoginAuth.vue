@@ -41,7 +41,7 @@ const formClick = () => {
                 </n-form-item>
                 <n-form-item label="验证码" path="captcha">
                     <n-input-group>
-                        <n-input v-model:value="userRef.captcha" round maxlength=6 placeholder="输输入验证码">
+                        <n-input v-model:value="userRef.captcha" round maxlength=6 placeholder="请输入验证码">
                         </n-input>
                         <n-button type="primary" round>发送验证码</n-button>
                     </n-input-group>

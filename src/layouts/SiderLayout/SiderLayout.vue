@@ -1,6 +1,19 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import ListContent from './ListContent.vue'
+import { ref } from 'vue'
+
+// 切换频道和好友
+const contentChangeFlag = ref(true)
+const changeContentClick = () => {
+    contentChangeFlag.value = !contentChangeFlag.value
+}
+
+// 显示搜索框
+const searchChangeFlag = ref(false)
+const changeSearchClick = () => {
+    searchChangeFlag.value = true
+}
 
 const router = useRouter()
 const clickSettingButton = () => {
@@ -21,18 +34,18 @@ const clickSettingButton = () => {
         <div class="context">
             <!-- 切换频道和私聊 -->
             <div class="parent-button">
-                <div class="image-button">
+                <div class="image-button" @click="changeContentClick">
                     <img src="@/assets/img/Layout/exchange.png" alt="">
                 </div>
             </div>
             <!-- 搜索 -->
             <div class="parent-button" style="margin-bottom: 0;">
-                <div class="image-button">
+                <div class="image-button" @click="changeSearchClick">
                     <img src="@/assets/img/Layout/find.png" alt="">
                 </div>
             </div>
             <div class="line"></div>
-            <ListContent></ListContent>
+            <ListContent :changeFlag="contentChangeFlag"></ListContent>
         </div>
         <!-- 分割线 -->
         <div class="line"></div>

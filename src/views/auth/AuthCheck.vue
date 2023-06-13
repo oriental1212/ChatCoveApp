@@ -32,11 +32,12 @@ const clickItemBox = (item) => {
 
 <template>
     <div class="auth-check">
-        <div class="box-title">
+        <!-- <div class="box-title">
             欢迎来到ChatCove
-        </div>
+        </div> -->
         <div class="all-box">
             <div class="nav-box">
+                <img src="@/assets/img/Layout/ChatCoveLogoDark.png" alt="">
                 <div class="item-box" v-for="item in imgList" :key="item" @click="clickItemBox(item)">
                     <img :src=item.imgUrl alt="">
                 </div>
@@ -74,6 +75,10 @@ const clickItemBox = (item) => {
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
+            img{
+                width: var(--image64Size);
+                height: var(--image32Size);
+            }
             .item-box{
                 height: 50px;
                 width: 100%;
@@ -94,13 +99,6 @@ const clickItemBox = (item) => {
                 cursor: pointer;
             }
         }
-    }
-    .box-title{
-        font-size: 32px;
-        height: 32px;
-        width: auto;
-        margin-bottom: 32px;
-        color: rgb(198, 255, 233);
     }
 }
 </style>
