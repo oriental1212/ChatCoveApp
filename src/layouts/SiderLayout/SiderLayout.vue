@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import ListContent from './ListContent.vue'
 import { ref } from 'vue'
+import { useSystemStore } from '@/stores/modules/system'
 
 // 切换频道和好友
 const contentChangeFlag = ref(true)
@@ -10,9 +11,9 @@ const changeContentClick = () => {
 }
 
 // 显示搜索框
-const searchChangeFlag = ref(false)
+const systemStore = useSystemStore()
 const changeSearchClick = () => {
-    searchChangeFlag.value = true
+    systemStore.searchFlagChange()
 }
 
 const router = useRouter()

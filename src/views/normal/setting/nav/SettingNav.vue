@@ -70,10 +70,11 @@ const clickItemActive = (item) => {
         .setting-nav-group{
             margin-bottom: var(--image16Size);
             padding-left: var(--image8Size);
+            color: var(--text-color);
             .nav-group-title{
                 padding: 0 var(--image16Size);
                 font-size: 12px;
-                color: rgba(230, 234, 240, 0.4);
+                color: var(--text-tip-color);
                 line-height: var(--image32Size);
             }
             .nav-group-item{
@@ -85,12 +86,11 @@ const clickItemActive = (item) => {
                 margin-bottom: 2px;
                 .nav-text{
                     user-select: none;
-                    color: #e6eaf0;
                     font-size: 16px;
                 }
             }
             .nav-group-item:hover{
-                background-color: var(--CardBackgroundColor);
+                background-color: var(--ButtonBackgroundColor);
                 cursor: pointer;
             }
         }
@@ -107,7 +107,7 @@ const clickItemActive = (item) => {
     }
 }
 .active{
-    background-color: var(--CardBackgroundColor);
+    background-color: var(--ButtonBackgroundColor);
     color: var(--ThemeColor);
 }
 </style>

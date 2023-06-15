@@ -10,28 +10,24 @@ export const navRouter = [
         children: [
             {
                 title: '账号设置',
-                isActive: true,
-                isShow: true
+                isActive: true
             },
             {
                 title: '背包',
-                isActive: false,
-                isShow: false
+                isActive: false
+
             },
             {
                 title: '隐私设置',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '授权管理',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '邀请码',
-                isActive: false,
-                isShow: false
+                isActive: false
             }
         ]
     },
@@ -40,23 +36,19 @@ export const navRouter = [
         children: [
             {
                 title: '激活vip',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '道具商城',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '我的账单',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '兑换码',
-                isActive: false,
-                isShow: false
+                isActive: false
             }
         ]
     },
@@ -65,43 +57,35 @@ export const navRouter = [
         children: [
             {
                 title: '语音设置',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '按键设置',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '表情管理',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '通知',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '语言',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '外观',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '工具',
-                isActive: false,
-                isShow: false
+                isActive: false
             },
             {
                 title: '高级设置',
-                isActive: false,
-                isShow: false
+                isActive: false
             }
         ]
     }

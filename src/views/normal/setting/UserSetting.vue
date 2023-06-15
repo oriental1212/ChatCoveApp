@@ -14,5 +14,6 @@ import SettingNav from './nav/SettingNav.vue'
 .setting-page-overflow{
     display: flex;
     flex-direction: row;
+    overflow-x: hidden;
 }
 </style>

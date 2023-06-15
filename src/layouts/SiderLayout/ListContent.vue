@@ -1,6 +1,8 @@
 <script setup>
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const props = defineProps({
     changeFlag: {
         type: Boolean,
@@ -8,31 +10,39 @@ const props = defineProps({
     }
 })
 
+// 好友页面列表
 const friendsList = reactive([
     {
         title: '全部好友',
-        fontImg: '/src/assets/img/Layout/allFriend.png'
+        fontImg: '/src/assets/img/Layout/allFriend.png',
+        fontUrl: '/app/friends/allFriends'
     },
     {
         title: '在线好友',
-        fontImg: '/src/assets/img/Layout/onlineFriend.png'
+        fontImg: '/src/assets/img/Layout/onlineFriend.png',
+        fontUrl: '/app/friends/onlineFriends'
     },
     {
         title: '好友请求',
-        fontImg: '/src/assets/img/Layout/addFriend.png'
+        fontImg: '/src/assets/img/Layout/addFriend.png',
+        fontUrl: '/app/friends/allFriends'
     },
     {
         title: '黑名单',
-        fontImg: '/src/assets/img/Layout/blackFriend.png'
+        fontImg: '/src/assets/img/Layout/blackFriend.png',
+        fontUrl: '/app/friends/blacklistFriends'
     }
 ])
+const friendsPageClick = (friend) => {
+    router.push({ path: friend.fontUrl })
+}
 </script>
 
 <template>
     <div class="list-content">
     <!-- 好友操作展示  -->
         <div class="parent-button" v-for="friend in friendsList" :key="friend" v-show="props.changeFlag">
-            <div class="insert-button">
+            <div class="insert-button" @click="friendsPageClick(friend)">
                 <img :src=friend.fontImg alt="">
             </div>
         </div>

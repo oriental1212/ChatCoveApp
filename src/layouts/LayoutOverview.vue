@@ -1,9 +1,20 @@
 <script setup>
-import { ref } from 'vue'
 import Sider from './SiderLayout/SiderLayout.vue'
 import Search from '@/components/search/SearchDialog.vue'
+import { useSystemStore } from '@/stores/modules/system/index.js'
+import { storeToRefs } from 'pinia'
 
-const searchChangeFlag = ref(false)
+const systemStore = useSystemStore()
+const { searchFlag } = storeToRefs(systemStore)
+
+const closeSearch = () => {
+    const tp = document.querySelector('.search-dialog')
+    if (tp) {
+        if (!tp.contains(event.target)) {
+            systemStore.searchFlagChange()
+        }
+    }
+}
 </script>
 
 <template>
@@ -21,7 +32,7 @@ const searchChangeFlag = ref(false)
             </n-layout-content>
         </n-layout>
         <!-- 搜索 -->
-        <div class="search" v-show="searchChangeFlag">
+        <div class="search" v-show="searchFlag" @click="closeSearch()">
             <Search></Search>
         </div>
     </div>
@@ -61,7 +72,7 @@ const searchChangeFlag = ref(false)
                 margin: 15px 15px 15px 10px;
                 border: 0 solid;
                 border-radius: 20px;
-                background-color: #25272A;
+                background-color: var(--CardBackgroundColor);
             }
         }
     }
