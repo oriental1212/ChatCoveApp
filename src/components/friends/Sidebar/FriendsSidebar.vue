@@ -87,7 +87,6 @@ const buttonChangeOver = () => {
                         width: 32px;
                         height: 32px;
                         border-radius: 10px;
-                        background-color: white;
                         background-repeat: no-repeat;
                         background-size: cover;
                         background-image: url(@/assets/img/Layout/my_avatar.jpg);

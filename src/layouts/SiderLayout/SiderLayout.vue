@@ -16,9 +16,17 @@ const changeSearchClick = () => {
     systemStore.searchFlagChange()
 }
 
+// 切换设置
+const settingChangeFlag = ref(true)
 const router = useRouter()
 const clickSettingButton = () => {
-    router.push({ path: '/app/userSetting' })
+    if (settingChangeFlag.value) {
+        router.push({ path: '/app/userSetting' })
+        settingChangeFlag.value = false
+    } else {
+        router.back()
+        settingChangeFlag.value = true
+    }
 }
 </script>
 
