@@ -38,6 +38,11 @@ export const router = createRouter({
                             name: 'onlineFriends',
                             path: '/app/friends/onlineFriends',
                             component: () => import('@/views/friends/online-friends/OnlineFriends.vue')
+                        },
+                        {
+                            name: 'privateChat',
+                            path: '/app/friends/privateChat',
+                            component: () => import('@/components/friends/chat/PrivateChat.vue')
                         }
                     ]
                 }

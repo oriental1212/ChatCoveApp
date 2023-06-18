@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const buttonFlag = ref(true)
 const buttonActive = ref(false)
 const buttonActiveOver = () => {
@@ -8,6 +10,10 @@ const buttonActiveOver = () => {
 }
 const buttonChangeOver = () => {
     buttonFlag.value = !buttonFlag.value
+}
+
+const jumpPrivateChatClick = () => {
+    router.push({ path: '/app/friends/privateChat' })
 }
 </script>
 
@@ -19,7 +25,7 @@ const buttonChangeOver = () => {
             <div class="nav-list-title">消息</div>
             <!-- 内容 -->
             <div class="nav-list-content">
-                <div class="nav-list-item" @mouseover="buttonActiveOver()" @mouseout="buttonActiveOver()">
+                <div class="nav-list-item" @click="jumpPrivateChatClick()" @mouseover="buttonActiveOver()" @mouseout="buttonActiveOver()">
                     <!-- 头像 -->
                     <div class="item-avatar">
                         <div class="avatar-img"></div>
@@ -124,7 +130,7 @@ const buttonChangeOver = () => {
                 }
             }
             .nav-list-item:hover{
-                transform: scale(1.15);
+                transform: scale(1.05);
                 cursor: pointer;
             }
         }
