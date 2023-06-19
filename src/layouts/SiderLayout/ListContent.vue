@@ -1,7 +1,15 @@
 <script setup>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useSystemStore } from '@/stores/modules/system/index.js'
+import { storeToRefs } from 'pinia'
+import InsertChannelDialog from '@/components/dialog/InsertChannelDialog.vue'
 
+const systemStore = useSystemStore()
+const { insertChannelFlag } = storeToRefs(systemStore)
+const insertChannelClick = () => {
+    systemStore.insertChannelFlagChange()
+}
 const router = useRouter()
 const props = defineProps({
     changeFlag: {
@@ -33,8 +41,22 @@ const friendsList = reactive([
         fontUrl: '/app/friends/blacklistFriends'
     }
 ])
-const friendsPageClick = (friend) => {
+// 跳转好友界面
+const joinFriendsPageClick = (friend) => {
     router.push({ path: friend.fontUrl })
+}
+// 频道加入和创建
+const insertChannelClose = () => {
+    const tp = document.querySelector('.insert-channel-card')
+    if (tp) {
+        if (!tp.contains(event.target)) {
+            systemStore.insertChannelFlagChange()
+        }
+    }
+}
+// 进入频道
+const joinChannelPageClick = () => {
+    router.push({ path: '/app/channel' })
 }
 </script>
 
@@ -42,20 +64,24 @@ const friendsPageClick = (friend) => {
     <div class="list-content">
     <!-- 好友操作展示  -->
         <div class="parent-button" v-for="friend in friendsList" :key="friend" v-show="props.changeFlag">
-            <div class="insert-button" @click="friendsPageClick(friend)">
+            <div class="insert-button" @click="joinFriendsPageClick(friend)">
                 <img :src=friend.fontImg alt="">
             </div>
         </div>
     <!-- 服务器列表 -->
         <!-- 添加服务器 -->
         <div class="parent-button" v-show="!props.changeFlag">
-            <div class="insert-button">
+            <div class="insert-button" @click="insertChannelClick()">
                 <img src="@/assets/img/Layout/insert.png" alt="">
             </div>
         </div>
+        <div v-show="insertChannelFlag" @click="insertChannelClose()">
+            <InsertChannelDialog></InsertChannelDialog>
+        </div>
+
         <!-- 动态列表展示 -->
         <div class="dynamic-list" v-show="!props.changeFlag">
-            <div class="card-button">
+            <div class="card-button" @click="joinChannelPageClick()">
                 <img src="@/assets/img/Layout/my_avatar.jpg" alt="">
             </div>
         </div>

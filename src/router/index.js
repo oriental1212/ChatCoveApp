@@ -45,6 +45,12 @@ export const router = createRouter({
                             component: () => import('@/components/friends/chat/PrivateChat.vue')
                         }
                     ]
+                },
+                // 频道页面跳转
+                {
+                    name: 'channel',
+                    path: '/app/channel',
+                    component: () => import('@/views/channel/ChannelPage.vue')
                 }
             ]
         },
