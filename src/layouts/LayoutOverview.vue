@@ -73,6 +73,7 @@ const closeSearch = () => {
                 border: 0 solid;
                 border-radius: 20px;
                 background-color: var(--CardBackgroundColor);
+                overflow: hidden;
             }
         }
     }
