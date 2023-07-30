@@ -81,6 +81,11 @@ export const router = createRouter({
                     name: 'loginPassword',
                     path: '/login/loginPassword',
                     component: () => import('@/views/auth/components/LoginPassword.vue')
+                },
+                {
+                    name: 'registerAuth',
+                    path: '/login/registerAuth',
+                    component: () => import('@/views/auth/components/registerAuth.vue')
                 }
             ]
         }

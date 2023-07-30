@@ -9,16 +9,24 @@ const imgList = reactive([
     },
     {
         imgName: 'LoginAuth',
-        imgUrl: '/src/assets/img/auth/phone.png'
+        imgUrl: '/src/assets/img/auth/mail.png'
     },
     {
-        imgName: '',
+        imgName: 'TencentAuth',
         imgUrl: '/src/assets/img/auth/qq.png'
     }
 ])
 const router = useRouter()
 const clickItemBox = (item) => {
-    router.push({ path: '/login/' + item.imgName })
+    if (item.imgName === 'TencentAuth') {
+        qqLogin()
+    } else {
+        router.push({ path: '/login/' + item.imgName })
+    }
+}
+
+const qqLogin = () => {
+
 }
 </script>
 

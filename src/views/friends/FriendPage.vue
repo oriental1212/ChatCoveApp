@@ -1,5 +1,5 @@
 <script setup>
-import FriendsSidebar from '@/views/friends/cpns/FriendsSidebar.vue'
+import FriendsSidebar from '@/components/friends/Sidebar/FriendsSidebar.vue'
 </script>
 
 <template>

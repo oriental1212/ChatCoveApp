@@ -48,7 +48,6 @@ const formClick = () => {
     loadingFlag.value = true
     Request.post({ url: '/authority/loginByAccount?' + 'account=' + userRef.value.account + '&password=' + userRef.value.password }).then((res) => {
         loadingFlag.value = false
-        console.log(res)
         if (res.code === '200') {
             localStorage.setItem('token', res.result)
             message.success('登录成功')
@@ -61,6 +60,10 @@ const formClick = () => {
 
 const forgetPasswordClick = () => {
     router.push({ path: '/login/forgetAuth' })
+}
+
+const registerAccountClick = () => {
+    router.push({ path: '/login/registerAuth' })
 }
 </script>
 
@@ -82,12 +85,15 @@ const forgetPasswordClick = () => {
                 </n-form-item>
                 <div style="display: flex; justify-content: space-between;">
                     <n-checkbox v-model:checked="userRef.autoLoginFlag" style="margin-left: 8px;">下次自动登录</n-checkbox>
-                    <n-button style="margin-right: 8px;" @click="forgetPasswordClick" text type="primary">忘记密码</n-button>
                 </div>
                 <div style="display: flex; justify-content: center">
                     <n-button
                         :disabled="userRef.account === null || userRef.account === '' || userRef.password === null || userRef.password === ''" round type="primary" @click="formClick" size="large" style="margin-top: 16px; width: 100%;">登录
                     </n-button>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 16px;">
+                    <n-button style="margin-right: 8px;" @click="registerAccountClick" text type="primary">注册账号</n-button>
+                    <n-button style="margin-right: 8px;" @click="forgetPasswordClick" text type="primary">忘记密码</n-button>
                 </div>
             </n-form>
         </div>
