@@ -1,27 +1,32 @@
 <script setup>
 import { ref } from 'vue'
-import { rulePhone, ruleCaptcha } from '@/utils/auth/rule.js'
+import { ruleEmail, ruleCaptcha } from '@/utils/auth/rule.js'
 
 const formRef = ref(null)
 const userRef = ref({
-    phone: null,
+    email: null,
     captcha: null,
     check: false
 })
 const rules = {
-    phone: [
+    email: [
         {
+            required: true,
             validator (rule, value) {
-                if (!rulePhone.test(value)) {
-                    return new Error('手机号格式错误')
+                if (!ruleEmail.test(value)) {
+                    return new Error('邮箱格式错误')
                 }
                 return true
             },
-            trigger: ['input']
+            trigger: ['input', 'blur']
         }
     ]
 }
 const formClick = () => {
+    console.log(userRef.value)
+}
+
+const sendCaptchaClick = () => {
 
 }
 </script>
@@ -29,30 +34,29 @@ const formClick = () => {
 <template>
     <div class="login-auth-box">
         <div class="form-box">
-            <n-h1 class="title">短信登录</n-h1>
+            <n-h1 class="title">验证码登录</n-h1>
             <n-form
                 ref="formRef"
                 :model="userRef"
                 :rules="rules"
                 class="form"
             >
-                <n-form-item label="手机号" path="phone">
-                    <n-input v-model:value="userRef.phone" round placeholder="请输入手机号"/>
+                <n-form-item label="邮箱" path="email">
+                    <n-input v-model:value="userRef.email" round placeholder="请输入邮箱"/>
                 </n-form-item>
                 <n-form-item label="验证码" path="captcha">
                     <n-input-group>
                         <n-input v-model:value="userRef.captcha" round maxlength=6 placeholder="请输入验证码">
                         </n-input>
-                        <n-button type="primary" round>发送验证码</n-button>
+                        <n-button type="primary" round @click="sendCaptchaClick">发送验证码</n-button>
                     </n-input-group>
                 </n-form-item>
                 <n-checkbox v-model:checked="userRef.check" style="margin-left: 8px;">下次自动登录</n-checkbox>
                 <div style="display: flex; justify-content: center">
                     <n-button
-                        :disabled="userRef.captcha === null || userRef.captcha === '' || userRef.phone === null || userRef.phone === '' || !rulePhone.test(userRef.phone) || !ruleCaptcha.test(userRef.captcha)"
+                        :disabled="userRef.captcha === null || userRef.captcha === '' || userRef.phone === null || userRef.email === '' || !ruleEmail.test(userRef.email) || !ruleCaptcha.test(userRef.captcha)"
                         round
-                        type="primary" @click="formClick" size="large" style="margin-top: 16px; width: 100%;">
-                        注册/登录
+                        type="primary" @click="formClick" size="large" style="margin-top: 16px; width: 100%;">注册/登录
                     </n-button>
                 </div>
             </n-form>

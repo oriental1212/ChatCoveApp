@@ -16,7 +16,9 @@ themeStore.osThemeInit()
         :date-locale="dateZhCN"
         class="provider"
     >
-        <router-view></router-view>
+        <n-message-provider>
+            <router-view></router-view>
+        </n-message-provider>
     </n-config-provider>
 </template>
 

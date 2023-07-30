@@ -37,14 +37,6 @@ const rules = {
         }
     ]
 }
-// 手机找回
-const findByPhoneClick = () => {
-    accountFlag.value = true
-}
-// 邮箱找回
-const findByEmailClick = () => {
-    accountFlag.value = false
-}
 // 提交校验码
 const resetPsswordClick = () => {
     checkFlag.value = false
@@ -65,13 +57,6 @@ const backToRestClick = () => {
             :rules="rules"
             ref="formRef"
         >
-            <div class="find-change">
-                <n-button round @click="findByPhoneClick" type="primary">手机号找回</n-button>
-                <n-button round @click="findByEmailClick" type="primary">邮箱找回</n-button>
-            </div>
-            <n-form-item label="手机号" path="phone" v-if="checkFlag && accountFlag">
-                <n-input v-model:value="userRef.account.phone" round placeholder="请输入手机号"/>
-            </n-form-item>
             <n-form-item label="邮箱" path="email" v-if="checkFlag && !accountFlag">
                 <n-input v-model:value="userRef.account.email" round placeholder="请输入邮箱"/>
             </n-form-item>
@@ -122,12 +107,6 @@ const backToRestClick = () => {
     align-items: center;
     .form{
         width: 100%;
-        .find-change{
-            display: flex;
-            justify-content: space-around;
-            margin-top: 16px;
-            margin-bottom: 16px;
-        }
         .back-to-rest{
             margin-top: 16px;
             color: #AAABAF;
@@ -136,7 +115,7 @@ const backToRestClick = () => {
     .title{
         color: #222222;
         font-weight: bold;
-        margin-bottom: 16px;
+        margin-bottom: 32px;
     }
 }
 </style>

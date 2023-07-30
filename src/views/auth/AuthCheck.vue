@@ -14,27 +14,16 @@ const imgList = reactive([
     {
         imgName: '',
         imgUrl: '/src/assets/img/auth/qq.png'
-    },
-    {
-        imgName: '',
-        imgUrl: '/src/assets/img/auth/wechat.png'
     }
 ])
 const router = useRouter()
 const clickItemBox = (item) => {
-    if (item.imgName === 'LoginPassword') {
-        router.push({ path: '/login/loginPassword' })
-    } else if (item.imgName === 'LoginAuth') {
-        router.push({ path: '/login/loginAuth' })
-    }
+    router.push({ path: '/login/' + item.imgName })
 }
 </script>
 
 <template>
     <div class="auth-check">
-        <!-- <div class="box-title">
-            欢迎来到ChatCove
-        </div> -->
         <div class="all-box">
             <div class="nav-box">
                 <img src="@/assets/img/Layout/ChatCoveLogoDark.png" alt="">
@@ -64,7 +53,7 @@ const clickItemBox = (item) => {
         justify-content: center;
         align-items: center;
         .nav-box{
-            height: 500px;
+            height: 450px;
             width: 50px;
             border-radius: 20px;
             padding: 16px 16px 16px 16px;

@@ -17,9 +17,9 @@ class Request {
         this.instance.interceptors.request.use(
             async config => {
                 const handleConfig = { ...config }
-                if (localStorage.get('token')) {
+                if (localStorage.getItem('token')) {
                     // 设置token
-                    handleConfig.headers.Authorization = localStorage.get('token') || ''
+                    handleConfig.headers.ChatCoveToken = localStorage.getItem('token')
                 }
                 return handleConfig
             }
@@ -29,12 +29,7 @@ class Request {
             response => {
                 const { status } = response
                 if (status === 200 || status < 300 || status === 304) {
-                    const backend = response.data
-                    const { code } = backend
-                    // 请求成功
-                    if (code === 200) {
-                        return Promise.resolve(backend)
-                    }
+                    return Promise.resolve(response.data)
                 }
             },
             axiosError => {
