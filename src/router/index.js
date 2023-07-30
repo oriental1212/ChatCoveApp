@@ -42,7 +42,7 @@ export const router = createRouter({
                         {
                             name: 'privateChat',
                             path: '/app/friends/privateChat',
-                            component: () => import('@/components/friends/chat/PrivateChat.vue')
+                            component: () => import('@/views/friends/cpns/PrivateChat.vue')
                         }
                     ]
                 },
@@ -50,7 +50,14 @@ export const router = createRouter({
                 {
                     name: 'channel',
                     path: '/app/channel',
-                    component: () => import('@/views/channel/ChannelPage.vue')
+                    component: () => import('@/views/channel/ChannelPage.vue'),
+                    children: [
+                        {
+                            name: 'groupChat',
+                            path: '/app/channel/groupChat',
+                            component: () => import('@/views/channel/cpns/GroupChat.vue')
+                        }
+                    ]
                 }
             ]
         },
