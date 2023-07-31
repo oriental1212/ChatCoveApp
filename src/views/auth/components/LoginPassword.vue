@@ -51,7 +51,10 @@ const formClick = () => {
         if (res.code === '200') {
             localStorage.setItem('token', res.result)
             message.success('登录成功')
-            router.push({ path: '/app' })
+            if (userRef.value.autoLoginFlag) {
+                localStorage.setItem('autoLoginFlag', 1)
+            }
+            router.push({ path: '/app/hotChannel' })
         } else {
             message.error(res.message)
         }

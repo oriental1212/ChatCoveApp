@@ -58,6 +58,12 @@ export const router = createRouter({
                             component: () => import('@/views/channel/cpns/GroupChat.vue')
                         }
                     ]
+                },
+                // 热门频道
+                {
+                    name: 'hotChannel',
+                    path: '/app/hotChannel',
+                    component: () => import('@/views/channel/HotChannel.vue')
                 }
             ]
         },

@@ -58,6 +58,11 @@ const insertChannelClose = () => {
 const joinChannelPageClick = () => {
     router.push({ path: '/app/channel' })
 }
+
+// 热门服务器
+const hotChannelClick = () => {
+    router.push({ path: '/app/hotChannel' })
+}
 </script>
 
 <template>
@@ -69,6 +74,12 @@ const joinChannelPageClick = () => {
             </div>
         </div>
     <!-- 服务器列表 -->
+        <!-- 热门服务器 -->
+        <div class="parent-button" v-show="!props.changeFlag">
+            <div class="insert-button" @click="hotChannelClick()">
+                <img src="@/assets/img/Layout/hot.png" alt="">
+            </div>
+        </div>
         <!-- 添加服务器 -->
         <div class="parent-button" v-show="!props.changeFlag">
             <div class="insert-button" @click="insertChannelClick()">

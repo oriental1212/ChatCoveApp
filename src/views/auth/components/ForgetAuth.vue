@@ -106,7 +106,7 @@ const backToRestClick = () => {
 // 重置密码
 const confirmClick = () => {
     Request.post({
-        url: '/authority/findPassword',
+        url: '/authority/changePassword',
         data: {
             account: userRef.value.email,
             password: userRef.value.password,

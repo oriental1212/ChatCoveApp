@@ -1,21 +1,15 @@
 <script setup>
 import { reactive } from 'vue'
-import { navRouter, updateRecords } from './navRouter.js'
+import { navRouter } from './navRouter.js'
 
 const navList = reactive(navRouter)
-const updateList = reactive(updateRecords)
 const clickItemActive = (item) => {
     navRouter.forEach(group => {
         group.children.forEach(items => {
             items.isActive = false
         })
     })
-    updateList.isActive = false
-    if (item.title === '更新记录') {
-        updateList.isActive = true
-    } else {
-        item.isActive = true
-    }
+    item.isActive = true
 }
 </script>
 
@@ -36,11 +30,6 @@ const clickItemActive = (item) => {
             <!-- 分割线 -->
             <div class="setting-nav-group-line"></div>
             <div class="setting-nav-group">
-                <div class="nav-group-item" :class="{ active: updateList.isActive }" @click="clickItemActive(updateList)">
-                    <div class="nav-text">
-                        {{ updateList.title }}
-                    </div>
-                </div>
                 <div class="nav-group-item">
                     <div class="nav-text" style="color: #D24D42;">
                         退出登录
