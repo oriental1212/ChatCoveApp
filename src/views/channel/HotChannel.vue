@@ -93,7 +93,7 @@ const hotChannelList = reactive([
                         <div class="item-name">{{ hotChannelItem.channelName }}</div>
                         <div class="item-description">{{ hotChannelItem.channeldescription }}</div>
                         <div class="item-online">
-                            <n-badge dot type="success" style="margin-right: 5px;"></n-badge>
+                            <n-badge dot type="success" style="margin-right: 5px; z-index: 0"></n-badge>
                             {{ hotChannelItem.online }}
                         </div>
                     </div>
@@ -159,6 +159,7 @@ const hotChannelList = reactive([
                 background-color: white;
                 margin: 32px;
                 border-radius: 24px;
+                transition: transform 0.3s ease;
                 .item-text{
                     width: calc(235px);
                     height: calc(100% - 40px);
@@ -198,6 +199,11 @@ const hotChannelList = reactive([
             }
         }
     }
+}
+
+.hot-item:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .hot-channel::-webkit-scrollbar{

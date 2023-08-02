@@ -5,7 +5,7 @@ export const router = createRouter({
     routes: [
         {
             path: '/',
-            redirect: '/app'
+            redirect: '/app/hotChannel'
         },
         {
             name: 'appOverview',
