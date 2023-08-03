@@ -131,6 +131,8 @@ const jumpPrivateChatClick = () => {
             }
             .nav-list-item:hover{
                 transform: scale(1.05);
+                background-color: var(--ButtonBackgroundColor);
+                border-radius: 12px;
                 cursor: pointer;
             }
         }

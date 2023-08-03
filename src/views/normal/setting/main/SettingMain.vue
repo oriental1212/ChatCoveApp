@@ -1,13 +1,15 @@
 <script setup>
 import Account from './personal-settings/AccountSetting.vue'
+import { useSettingStore } from '@/stores/modules/setting/index.js'
+
+const settingStore = useSettingStore()
 </script>
 
 <template>
     <div class="setting-page-main">
         <div class="setting-page-main-content">
-            <div class="title">111</div>
-            <div class="description">1234566</div>
-            <Account></Account>
+            <div class="title">{{ settingStore.settingTitle }}</div>
+            <Account v-if="'账号设置' === settingStore.settingTitle"></Account>
         </div>
     </div>
 </template>
@@ -27,17 +29,10 @@ import Account from './personal-settings/AccountSetting.vue'
         justify-content: flex-start;
         .title{
             width: 100%;
-            height: 40px;
+            height: 70px;
             font-size: 48px;
             line-height: 40px;
             color: var(--text-color);
-        }
-        .description{
-            padding: 16px 0;
-            height: 20px;
-            font-size: 14px;
-            line-height: 20px;
-            color: var(--text-tip-color);
             border-bottom: 1px solid var(--color-line);
             margin-bottom: 40px;
         }
@@ -45,5 +40,8 @@ import Account from './personal-settings/AccountSetting.vue'
     .setting-page-main-content::-webkit-scrollbar {
         display: none;
     }
+}
+.setting-page-main::-webkit-scrollbar {
+    display: none;
 }
 </style>

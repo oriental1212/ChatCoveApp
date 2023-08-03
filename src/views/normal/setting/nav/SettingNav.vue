@@ -1,8 +1,11 @@
 <script setup>
 import { reactive } from 'vue'
 import { navRouter } from './navRouter.js'
+import { useSettingStore } from '@/stores/modules/setting/index.js'
 
+const settingStore = useSettingStore()
 const navList = reactive(navRouter)
+
 const clickItemActive = (item) => {
     navRouter.forEach(group => {
         group.children.forEach(items => {
@@ -10,6 +13,7 @@ const clickItemActive = (item) => {
         })
     })
     item.isActive = true
+    settingStore.settingTitleChange(item.title)
 }
 </script>
 
