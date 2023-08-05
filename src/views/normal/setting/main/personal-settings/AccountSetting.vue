@@ -72,13 +72,35 @@ const userInfo = ref({
                 </div>
                 <div class="show-info">
                     <div class="user-banner"></div>
-                    <div class="user-card-content"></div>
+                    <div class="user-card-content">
+                        <div class="content-user">
+                            <div class="avatar-card"></div>
+                        </div>
+                        <div class="content-nickname">{{ userInfo.nickName }}</div>
+                        <div class="content-summery">
+                            <div class="summery-title">个人简介</div>
+                            <span style="font-size: 14px; line-height: 20px;">{{ userInfo.summery }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="setting-page-card-header" @click="ok">账号绑定</div>
-            <div class="setting-page-card-info">123</div>
+            <div class="setting-page-card-info">
+                <div class="account-bingdinig">
+                    <img src="@/assets/img/auth/mail.png" alt="">
+                    <span class="bingding-description">邮箱账号</span>
+                </div>
+                <div class="account-bingdinig">
+                    <img src="@/assets/img/auth/qq.png" alt="">
+                    <span class="bingding-description">QQ账号</span>
+                </div>
+            </div>
             <div class="setting-page-card-header" @click="ok">注销</div>
-            <div class="setting-page-card-info">账号注销</div>
+            <div class="setting-page-card-info">
+                <div class="account-bingdinig">
+                    <span class="bingding-description">注销账号</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -105,6 +127,7 @@ const userInfo = ref({
             display: flex;
             flex-direction: row;
             margin-bottom: 32px;
+            flex-wrap: wrap;
             .change-info{
                 flex: 1;
                 .editor-item{
@@ -138,7 +161,7 @@ const userInfo = ref({
                 .user-banner{
                     height: 68px;
                     background-size: cover;
-                    background-image: url('../../../../../assets/img/setting/userBanner.png');
+                    background-image: url('../../../../../assets/img/setting/123456.jpg');
                     box-shadow: rgba(0,0,0,0.32);
                     border-radius: 16px 16px 0 0;
                 }
@@ -150,7 +173,65 @@ const userInfo = ref({
                     width: 100%;
                     border-radius: 16px;
                     box-shadow: rgba(0,0,0,0.32);
+                    .content-user{
+                        height: 64px;
+                        position: relative;
+                        .avatar-card{
+                            width: 64px;
+                            height: 64px;
+                            background-image: url('../../../../../assets/img/Layout/my_avatar.jpg');
+                            background-size: cover;
+                            border-radius: 50%;
+                            position: absolute;
+                            left: 30px;
+                            bottom: 20px;
+                        }
+                    }
+                    .content-nickname{
+                        width: 100%;
+                        font-size: 20px;
+                        font-weight: 600;
+                        line-height: 26px;
+                        color: var(--text-color);
+                        box-sizing: border-box;
+                        padding: 0 30px;
+                        margin-bottom: 16px;
+                    }
+                    .content-summery{
+                        width: 100%;
+                        color: var(--text-color);
+                        box-sizing: border-box;
+                        padding: 0 30px;
+                        .summery-title{
+                            font-size: 12px;
+                            font-weight: 600;
+                            line-height: 26px;
+                            margin-bottom: 8px;
+                        }
+                    }
                 }
+            }
+            .account-bingdinig{
+                box-sizing: border-box;
+                flex-basis: 100%;
+                height: 40px;
+                border-radius: 8px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                img{
+                    margin-left: 8px;
+                    width: 24px;
+                    height: 24px;
+                }
+                .bingding-description{
+                    margin-left: 8px;
+                    color: var(--text-color);
+                }
+            }
+            .account-bingdinig:hover{
+                background-color: hsla(0,0%,100%,0.06);
+                cursor: pointer;
             }
         }
     }

@@ -9,18 +9,6 @@ export const navRouter = [
             {
                 title: '隐私设置',
                 isActive: false
-            },
-            {
-                title: '授权管理',
-                isActive: false
-            },
-            {
-                title: '邀请码',
-                isActive: false
-            },
-            {
-                title: '表情管理',
-                isActive: false
             }
         ]
     },
@@ -38,22 +26,6 @@ export const navRouter = [
             },
             {
                 title: '通知',
-                isActive: false
-            },
-            {
-                title: '语言',
-                isActive: false
-            },
-            {
-                title: '外观',
-                isActive: false
-            },
-            {
-                title: '工具',
-                isActive: false
-            },
-            {
-                title: '高级设置',
                 isActive: false
             }
         ]

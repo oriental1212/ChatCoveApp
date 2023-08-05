@@ -1,5 +1,9 @@
 <script setup>
-import Account from './personal-settings/AccountSetting.vue'
+import AccountSetting from './personal-settings/AccountSetting.vue'
+import ButtonSetting from './personal-settings/ButtonSetting.vue'
+import PrivateSetting from './personal-settings/PrivateSetting.vue'
+import VoiceSetting from './personal-settings/VoiceSetting.vue'
+import NoticeSetting from './personal-settings/NoticeSetting.vue'
 import { useSettingStore } from '@/stores/modules/setting/index.js'
 
 const settingStore = useSettingStore()
@@ -9,7 +13,11 @@ const settingStore = useSettingStore()
     <div class="setting-page-main">
         <div class="setting-page-main-content">
             <div class="title">{{ settingStore.settingTitle }}</div>
-            <Account v-if="'账号设置' === settingStore.settingTitle"></Account>
+            <AccountSetting v-if="'账号设置' === settingStore.settingTitle"></AccountSetting>
+            <PrivateSetting v-if="'隐私设置' === settingStore.settingTitle"></PrivateSetting>
+            <VoiceSetting v-if="'语音设置' === settingStore.settingTitle"></VoiceSetting>
+            <ButtonSetting v-if="'按键设置' === settingStore.settingTitle"></ButtonSetting>
+            <NoticeSetting v-if="'通知' === settingStore.settingTitle"></NoticeSetting>
         </div>
     </div>
 </template>
