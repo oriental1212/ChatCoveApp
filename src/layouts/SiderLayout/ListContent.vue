@@ -56,7 +56,7 @@ const insertChannelClose = () => {
 }
 // 进入频道
 const joinChannelPageClick = () => {
-    router.push({ path: '/app/channel' })
+    router.push({ path: '/app/channel/groupChat' })
 }
 
 // 热门服务器
