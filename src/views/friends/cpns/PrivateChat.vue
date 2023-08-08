@@ -18,13 +18,44 @@ onMounted(() => {
 onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside)
 })
-
 const insertEmojiClick = (item) => {
     messageText.value += item
 }
-
 const showEmojiListClick = () => {
     emojiListShow.value = true
+}
+
+const channelMessageList = reactive([
+    {
+        messageId: 1,
+        senderName: 'dongfang',
+        senderAvatar: 'https://p.qqan.com/up/2021-4/16196625699289152.jpg',
+        replyId: null,
+        messageType: 0,
+        messageContent: '今天早',
+        createTime: '2022-07-01T12:34:56'
+    },
+    {
+        messageId: 2,
+        senderName: 'Oriental',
+        senderAvatar: 'https://p.qqan.com/up/2021-4/16196625699289152.jpg',
+        replyId: 1,
+        messageType: 0,
+        messageContent: '今天不太好今天不太好今天不太好今天不太好',
+        createTime: '2022-07-01T12:34:56'
+    },
+    {
+        messageId: 3,
+        senderName: 'Oriental',
+        senderAvatar: 'https://p.qqan.com/up/2021-4/16196625699289152.jpg',
+        replyId: 1,
+        messageType: 0,
+        messageContent: '我今天还行',
+        createTime: '2022-07-01T12:34:56'
+    }
+])
+const getItemByReplayId = (replayId) => {
+    return channelMessageList.find(item => item.messageId === replayId)
 }
 </script>
 
@@ -34,7 +65,24 @@ const showEmojiListClick = () => {
             <div class="img"></div>
             <div class="username">Oriental</div>
         </div>
-        <div class="main-container"></div>
+        <!-- 消息列表 -->
+        <div class="main-container">
+            <div class="message-item" v-for="channelMessageItem in channelMessageList" :key="channelMessageItem">
+                <div class="message-avatar" :style="{ 'background-image': 'url(' + channelMessageItem.senderAvatar + ')' }"></div>
+                <div class="message-right">
+                    <div class="info">
+                        <div class="name-info">{{ channelMessageItem.senderName }}</div>
+                        <div class="msg-item">{{ channelMessageItem.createTime }}</div>
+                    </div>
+                    <div class="content">
+                        <div class="replay-message" v-if="channelMessageItem.replyId !== null">{{ getItemByReplayId(channelMessageItem.replyId).senderName }}:{{ getItemByReplayId(channelMessageItem.replyId).messageContent }}</div>
+                        <span class="replay-flag" v-if="channelMessageItem.replyId !== null">{{ getItemByReplayId(channelMessageItem.replyId).senderName }}</span>
+                        <span>&nbsp;{{ channelMessageItem.messageContent }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 输入框 -->
         <div class="input-message">
             <div class="send-container">
                 <div class="send-left" @click="showEmojiListClick">
@@ -82,7 +130,74 @@ const showEmojiListClick = () => {
         }
     }
     .main-container{
-        flex: 1
+        flex: 1;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        .message-item{
+            height: auto;
+            margin: 16px 24px 0;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            .message-avatar{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-size: cover;
+            }
+            .message-right{
+                flex: 1;
+                padding: 0 0 0 10px;
+                .info{
+                    height: 20px;
+                    display: flex;
+                    white-space: nowrap;
+                    .name-info{
+                        font-size: 14px;
+                        font-weight: 700;
+                        color: var(--text-color);
+                    }
+                    .msg-item{
+                        margin-left: 5px;
+                        line-height: 23px;
+                        font-size: 12px;
+                        color: var(--text-tip-color);
+                    }
+                }
+                .content{
+                    word-wrap: break-word;
+                    color: var(--text-color);
+                    font-weight: 400px;
+                    .replay-message{
+                        max-width: min-content;
+                        white-space: nowrap;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: rgba(230,234,240,0.64);
+                        margin: 4px 0;
+                        padding: 3px 8px;
+                        border-radius: 6px;
+                        background-color: hsla(0,0%,100%,0.06);
+                    }
+                    .replay-flag{
+                        padding: 0 4px;
+                        border-radius: 4px;
+                        background-color: #ff8f19;
+                    }
+                }
+            }
+        }
+    }
+    .main-container::-webkit-scrollbar {
+        width: 14px;
+        border: 4px solid transparent;
+        min-height: 40px;
+        background-color: var(--color-line);
+        background-clip: content-box;
     }
     .input-message{
         box-sizing: border-box;
