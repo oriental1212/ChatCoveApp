@@ -1,11 +1,12 @@
 <script setup>
-import { onMounted, onUnmounted, reactive, ref } from 'vue'
+import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
 import { emojiList } from '../../friends/cpns/emoji-list.js'
 
 const messageText = ref('')
 const emojiItemList = reactive(emojiList)
 const emojiListShow = ref(false)
 
+// 频道文本处理
 const handleClickOutside = (event) => {
     if (event.target.closest('.send-left')) { return true }
     if (!event.target.closest('.emoji-item')) {
@@ -25,6 +26,7 @@ const showEmojiListClick = () => {
     emojiListShow.value = true
 }
 
+// 频道消息处理
 const channelMessageList = reactive([
     {
         messageId: 1,
@@ -57,6 +59,34 @@ const channelMessageList = reactive([
 const getItemByReplayId = (replayId) => {
     return channelMessageList.find(item => item.messageId === replayId)
 }
+
+// 频道用户处理
+const channelByUserList = reactive([
+    {
+        channelId: 1,
+        channelName: 'Oriental',
+        channelAvatar: 'https://p.qqan.com/up/2021-4/16196625699289152.jpg',
+        userStatus: true
+    },
+    {
+        channelId: 2,
+        channelName: 'dongfang',
+        channelAvatar: 'https://p.qqan.com/up/2021-4/16196625699289152.jpg',
+        userStatus: true
+    },
+    {
+        channelId: 3,
+        channelName: 'Oriental',
+        channelAvatar: 'https://p.qqan.com/up/2021-4/16196625699289152.jpg',
+        userStatus: false
+    }
+])
+const onlineUser = computed(() => {
+    return channelByUserList.filter(item => item.userStatus === true).length
+})
+const offUser = computed(() => {
+    return channelByUserList.filter(item => item.userStatus === false).length
+})
 </script>
 
 <template>
@@ -106,7 +136,22 @@ const getItemByReplayId = (replayId) => {
                 <div class="topbar-icon" style="background-image: url('/src/assets/img/channel/personnel.png');"></div>
                 <div class="topbar-icon" style="background-image: url('/src/assets/img/channel/textSearch.png');"></div>
             </div>
-            <div class="group-container-right-context"></div>
+            <div class="group-container-right-context">
+                <div class="user-list-group-title">在线 - {{ onlineUser }}</div>
+                <template v-for="userItem in channelByUserList" :key="userItem">
+                    <div class="user-item" v-if="userItem.userStatus === true">
+                        <div class="user-avatar" :style="{ 'background-image': 'url(' + userItem.channelAvatar + ')' }"></div>
+                        <div class="user-name">{{ userItem.channelName }}</div>
+                    </div>
+                </template>
+                <div class="user-list-group-title">离线 - {{ offUser }}</div>
+                <template v-for="userItem in channelByUserList" :key="userItem">
+                    <div class="user-item offline" v-if="userItem.userStatus === false">
+                        <div class="user-avatar" :style="{ 'background-image': 'url(' + userItem.channelAvatar + ')' }"></div>
+                        <div class="user-name">{{ userItem.channelName }}</div>
+                    </div>
+                </template>
+            </div>
         </div>
     </div>
 </template>
@@ -315,22 +360,65 @@ const getItemByReplayId = (replayId) => {
         justify-content: flex-start;
         border-left: 1px solid var(--color-line);
         .group-container-right-topbar{
-            height: 50px;
             width: 100%;
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
+            margin-bottom: 8px;
             .topbar-icon{
-                width: 28px;
-                height: 28px;
-                margin: 0 18px;
-                background-size: cover;
+                width: 24px;
+                height: 24px;
+                padding: 4px;
+                margin: 5px 16px;
+                background-size: 24px;
+                background-position: center center;
                 background-repeat: no-repeat;
+                border-radius: 4px;
+            }
+            .topbar-icon:hover{
+                background-color: var(--ButtonBackgroundColor);
             }
         }
         .group-container-right-context{
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            color: var(--text-color);
+            position: relative;
+            .user-list-group-title{
+                margin: 16px 0 2px;
+                padding-left: 24px;
+                font-size: 14px;
+            }
+            .user-list-group-title:hover{
+                cursor: default;
+            }
+            .user-item{
+                padding: 8px 12px;
+                margin: 0 12px 2px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                border-radius: 6px;
+                .user-avatar{
+                    width: 32px;
+                    height: 32px;
+                    background-size: cover;
+                    border-radius: 50%;
+                    margin-right: 8px;
+                }
+                .user-name{
+                    font-size: 14px;
+                }
+            }
+            .user-item:hover{
+                background-color: var(--ButtonBackgroundColor);
+            }
+            .offline{
+                filter: brightness(0.7); /* 设置亮度为0.5，即变暗一半 */
+            }
         }
     }
 }

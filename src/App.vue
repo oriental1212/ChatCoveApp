@@ -8,6 +8,8 @@ themeStore.osThemeInit()
 // const theme = computed(() => {
 //     return themeStore.theme
 // })
+
+// webSocket
 </script>
         <!-- :theme="theme" -->
 <template>
