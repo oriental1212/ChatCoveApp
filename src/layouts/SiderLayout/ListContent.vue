@@ -19,31 +19,32 @@ const props = defineProps({
 })
 
 // 好友页面列表
+const friendsPageUrl = '/app/friends/friendsContext'
 const friendsList = reactive([
     {
         title: '全部好友',
         fontImg: '/src/assets/img/Layout/allFriend.png',
-        fontUrl: '/app/friends/allFriends'
+        itemTtile: 'allFriends'
     },
     {
         title: '在线好友',
         fontImg: '/src/assets/img/Layout/onlineFriend.png',
-        fontUrl: '/app/friends/onlineFriends'
+        itemTtile: 'onlineFriends'
     },
     {
         title: '好友请求',
         fontImg: '/src/assets/img/Layout/addFriend.png',
-        fontUrl: '/app/friends/allFriends'
+        itemTtile: 'requestFriends'
     },
     {
         title: '黑名单',
         fontImg: '/src/assets/img/Layout/blackFriend.png',
-        fontUrl: '/app/friends/blacklistFriends'
+        itemTtile: 'blacklistFriends'
     }
 ])
 // 跳转好友界面
 const joinFriendsPageClick = (friend) => {
-    router.push({ path: friend.fontUrl })
+    router.push({ path: friendsPageUrl, query: { itemTitle: friend.itemTtile } })
 }
 // 频道加入和创建
 const insertChannelClose = () => {

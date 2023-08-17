@@ -25,19 +25,9 @@ export const router = createRouter({
                     component: () => import('@/views/friends/FriendPage.vue'),
                     children: [
                         {
-                            name: 'allFriends',
-                            path: '/app/friends/allFriends',
-                            component: () => import('@/views/friends/all-friends/AllFriends.vue')
-                        },
-                        {
-                            name: 'blacklistFriends',
-                            path: '/app/friends/blacklistFriends',
-                            component: () => import('@/views/friends/blacklist-friends/BlacklistFriends.vue')
-                        },
-                        {
-                            name: 'onlineFriends',
-                            path: '/app/friends/onlineFriends',
-                            component: () => import('@/views/friends/online-friends/OnlineFriends.vue')
+                            name: 'friendsContext',
+                            path: '/app/friends/friendsContext',
+                            component: () => import('@/views/friends/friends-context/FriendsContext.vue')
                         },
                         {
                             name: 'privateChat',

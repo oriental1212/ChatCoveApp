@@ -1,16 +1,41 @@
 <script setup>
+import { onBeforeUpdate, onMounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
+const route = useRoute()
+const router = useRouter()
+const title = ref('所有好友')
+const requestFriendsFlag = ref(false)
+// 页面跳转
+onBeforeUpdate(() => {
+    switch (route.query.itemTitle) {
+    case 'allFriends': title.value = '所有好友'; break
+    case 'onlineFriends': title.value = '在线好友'; break
+    case 'blacklistFriends': title.value = '黑名单'; break
+    }
+    if (route.query.itemTitle === 'requestFriends') {
+        router.push({ path: '/app/friends/friendsContext', query: { itemTitle: 'allFriends' } })
+        requestFriendsFlag.value = true
+    }
+})
+onMounted(() => {
+    requestFriendsFlag.value = true
+})
+const maskClick = () => {
+    requestFriendsFlag.value = false
+    title.value = '所有好友'
+}
 </script>
 
 <template>
-    <div class="all-friends">
-        <div class="all-friends-header">
+    <div class="friends-context">
+        <div class="friends-context-header">
             <div class="header-left">
                 <img src="@/assets/img/Layout/allFriend.png" alt="">
-                <div class="title">所有好友 - 11</div>
+                <div class="title">{{ title }} - 12</div>
             </div>
         </div>
-        <div class="all-friends-content">
+        <div class="friends-content-middle">
             <div class="friends-card">
                 <div class="friends-user-avatar"></div>
                 <div class="friends-user-info">Oriental</div>
@@ -29,14 +54,38 @@
                 </div>
             </div>
         </div>
+
+        <!-- 添加好友 -->
+        <n-modal v-model:show="requestFriendsFlag">
+            <n-card
+            class="requestFriends"
+            style="width: 600px; background-color: var(--CardBackgroundColor);"
+            :bordered="false"
+            :on-mask-click="maskClick()"
+            >
+                <div class="friends-request-none" style="color: var(--text-tip-color); font-size: 16px; text-align: center;">
+                    空
+                </div>
+                <div class="friends-request-list" style="display: flex; flex-wrap: wrap; flex-direction: row;">
+                    <div class="request-card" style="background-color: var(--ButtonBackgroundColor); width: 100%; padding: 8px 16px 8px 8px; height: min-content; border-radius: 8px; display: flex; flex-direction: row; align-items: center; margin-bottom: 16px;">
+                        <img src="src/assets/img/Layout/my_avatar.jpg" style="width: 48px; height: 48px; border-radius: 8px" alt="">
+                        <div class="request-name" style="flex: 1; margin-left: 16px; color: var(--text-color); font-size: 14px; font-weight: 400;">dongfang</div>
+                        <div class="button-list" style="width: 150px; display: flex; align-items: center; justify-content: space-around;">
+                            <n-button round type="success">接受</n-button>
+                            <n-button round type="error">拒绝</n-button>
+                        </div>
+                    </div>
+                </div>
+            </n-card>
+        </n-modal>
     </div>
 </template>
 
 <style lang="less" scoped>
-.all-friends{
+.friends-context{
     height: calc(100vh - 30px);
     width: 100%;
-    .all-friends-header{
+    .friends-context-header{
         box-sizing: border-box;
         width: 100%;
         height: 70px;
@@ -64,7 +113,7 @@
             }
         }
     }
-    .all-friends-content{
+    .friends-content-middle{
         padding: 20px 0 20px 20px;
         height: calc(100% - 110px);
         display: flex;
@@ -136,7 +185,32 @@
             }
         }
     }
-    .all-friends-content::-webkit-scrollbar{
+    .requestFriends{
+        .friends-request-none{
+            color: var(--text-color);
+            font-size: 16px;
+        }
+        .friends-request-list{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            .request-card{
+                background-color: var(--ButtonBackgroundColor);
+                padding: 8px 16px;
+                height: min-content;
+                border-radius: 16px;
+                display: flex;
+                flex-direction: row;
+                img{
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+    }
+    .friends-content-middle::-webkit-scrollbar{
         display: none;
     }
 }
