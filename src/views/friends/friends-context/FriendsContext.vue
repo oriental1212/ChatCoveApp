@@ -6,7 +6,7 @@ const route = useRoute()
 const router = useRouter()
 const title = ref('所有好友')
 const requestFriendsFlag = ref(false)
-// 页面跳转
+// 四个页面跳转
 onBeforeUpdate(() => {
     switch (route.query.itemTitle) {
     case 'allFriends': title.value = '所有好友'; break
@@ -19,12 +19,15 @@ onBeforeUpdate(() => {
     }
 })
 onMounted(() => {
-    requestFriendsFlag.value = true
+    if (route.query.itemTitle === 'requestFriends') {
+        requestFriendsFlag.value = true
+    }
 })
 const maskClick = () => {
     requestFriendsFlag.value = false
     title.value = '所有好友'
 }
+
 </script>
 
 <template>

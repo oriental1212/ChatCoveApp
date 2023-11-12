@@ -1,7 +1,10 @@
 <script setup>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+// import QC from '@/services/qc-sdk/qcsdk.js'
+// import { useMessage } from 'naive-ui'
 
+// const message = useMessage()
 const imgList = reactive([
     {
         imgName: 'LoginPassword',
@@ -10,24 +13,45 @@ const imgList = reactive([
     {
         imgName: 'LoginAuth',
         imgUrl: '/src/assets/img/auth/mail.png'
-    },
-    {
-        imgName: 'TencentAuth',
-        imgUrl: '/src/assets/img/auth/qq.png'
     }
+    // {
+    //     imgName: 'TencentAuth',
+    //     imgUrl: '/src/assets/img/auth/qq.png'
+    // }
 ])
 const router = useRouter()
 const clickItemBox = (item) => {
-    if (item.imgName === 'TencentAuth') {
-        qqLogin()
-    } else {
-        router.push({ path: '/login/' + item.imgName })
-    }
+    // if (item.imgName === 'TencentAuth') {
+    //     qqLogin()
+    // } else {
+    //     router.push({ path: '/login/' + item.imgName })
+    // }
+    router.push({ path: '/login/' + item.imgName })
 }
 
-const qqLogin = () => {
+// const qqLogin = () => {
+//     QC.Login.showPopup({
+//         appid: '102062176',
+//         redirectURI: 'http://chatcove.oriental.cool/qqcallback'
+//     })
+// }
 
-}
+// onBeforeMount((openId, accessToken) => {
+//     QC.Login.getMe((openId, accessToken) => {
+//         if (openId !== undefined) {
+//             console.log(openId)
+//             console.log('---------------')
+//             console.log(accessToken)
+//             QC.api('get_user_info', '1304206691')
+//                 .success((s) => {
+//                     message.success('回调成功')
+//                 })
+//                 .error((err) => {
+//                     message.error(err)
+//                 })
+//         }
+//     })
+// })
 </script>
 
 <template>

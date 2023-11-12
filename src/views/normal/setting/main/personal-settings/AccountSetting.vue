@@ -1,10 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import { useUserInfoStore } from '@/stores/modules/user/user-info.js'
 
-// import { useSettingStore } from '@/stores/modules/setting/index.js'
-
-// const settingStore = useSettingStore()
-
+const userInfoStore = useUserInfoStore()
+console.log(userInfoStore.userInfo)
 const userInfo = ref({
     nickName: 'dongfang',
     summery: '我真帅',
@@ -12,6 +11,12 @@ const userInfo = ref({
     birthday: '123131',
     location: '123131'
 })
+const showModal = ref(false)
+
+const changeUserInfo = () => {
+    console.log('ok')
+    showModal.value = true
+}
 
 </script>
 
@@ -25,8 +30,14 @@ const userInfo = ref({
                         <div class="title">昵称</div>
                         <div class="content">
                             <span style="margin-bottom: 5px;">{{ userInfo.nickName }}</span>
-                            <n-button type="primary">更改昵称</n-button>
+                            <n-button type="primary" @click="changeUserInfo">更改昵称</n-button>
                         </div>
+                        <n-modal v-model:show="showModal" style="change-card">
+                            <n-card style="width: 600px; background-color:#35373D; border-color:#35373D">
+                                <n-input>更改昵称</n-input>
+                                <n-button>确认</n-button>
+                            </n-card>
+                        </n-modal>
                     </div>
                     <div class="editor-item">
                         <div class="title">头像</div>
@@ -90,10 +101,10 @@ const userInfo = ref({
                     <img src="@/assets/img/auth/mail.png" alt="">
                     <span class="bingding-description">邮箱账号</span>
                 </div>
-                <div class="account-bingdinig">
+                <!-- <div class="account-bingdinig">
                     <img src="@/assets/img/auth/qq.png" alt="">
                     <span class="bingding-description">QQ账号</span>
-                </div>
+                </div> -->
             </div>
             <div class="setting-page-card-header" @click="ok">注销</div>
             <div class="setting-page-card-info">

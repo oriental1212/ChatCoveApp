@@ -48,7 +48,11 @@ const formClick = () => {
     console.log(registerRef.value)
     Request.post({
         url: '/authority/register',
-        data: registerRef
+        data: {
+            username: registerRef.value.username,
+            password: registerRef.value.password,
+            email: registerRef.value.email
+        }
     }).then(res => {
         loadingFlag.value = false
         console.log(res)
